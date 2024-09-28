@@ -66,6 +66,7 @@ CONVERSIONDICT = {
 # read in apropriate data from API and put it in a dictionary  
 # get ready to export to email
 # read in all active cases currently 
+# write function to loop over 
 
 
 with open("food_recall_data.json", "r") as file:
@@ -98,21 +99,24 @@ def get_active_cases()-> json:
 
     }
     #get in states, then get nationwide and if id are not the same then add it in to json
-    for value in CONVERSIONDICT.keys():
+    for value in CONVERSIONDICT.keys():  ## replace with keys or values 
         r=requests.get(f'https://api.fda.gov/food/enforcement.json?search=distribution_pattern:"{value}"+AND+status:"Ongoing"+AND+(classification:"Class II"+classification:"Class I")&limit=500')
         
         if(r.status_code==200):
             recallData=r.json()
-            with open(f'recalldata/recall_data_{value}', 'w') as json_file:
+            with open(f'recalldata/{value}.json', 'w') as json_file:
                     json.dump(recallData, json_file, indent=4)
 
         else: 
             print(f"ERROR: RESPONSE CODE{r.status_code} at {value}")
 
     
-    
-    
 
-get_active_cases()
+# def merge_data(file1: json, file2:json):
+     
+
+
+
+
 
     
