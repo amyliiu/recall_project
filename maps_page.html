@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Maps of recalls</title>
+    <style>
+      #map {
+        height: 400px;
+        width: 600px;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5pkn67gqGZ6LzSf5vx8J5JMnqxnarsR0&callback=initMap"
+      async defer></script>
+    <script>
+      function initMap() {
+        // Initialize the map centered at a default position
+        const centerPosition = { lat: 41.4549666, lng: -70.5606839 };
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 5,
+          center: centerPosition,
+        });
+
+        // List of addresses with descriptions
+        const locations = [
+          { address: "1600 Amphitheatre Parkway, Mountain View, CA", description: "Google's Headquarters" },
+          { address: "Seattle, WA", description: "A beautiful city in the Pacific Northwest" }
+        ];
+
+        // Create a Geocoder instance
+        const geocoder = new google.maps.Geocoder();
+
+        // Loop through each location
+        locations.forEach((location) => {
+          // Geocode the address
+          geocoder.geocode({ address: location.address }, (results, status) => {
+            if (status === "OK") {
+              // Create the marker at the geocoded location
+              const marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location,
+                title: location.address
+              });
+
+              // Create an InfoWindow for the marker
+              const infoWindow = new google.maps.InfoWindow({
+                content: `<h3>${location.address}</h3><p>${location.description}</p>`
+              });
+
+              // Add a click listener to open the InfoWindow on marker click
+              marker.addListener("click", () => {
+                infoWindow.open(map, marker);
+              });
+            } else {
+              alert("Geocode was not successful for the following reason: " + status);
+            }
+          });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Maps of recalls</h1>
+    <div id="map"></div>
+  </body>
+</html>
