@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import json
 from geopy.geocoders import Nominatim   
+import os;
 
 CONVERSIONDICT = {
     "AL": "Alabama",
@@ -64,6 +65,7 @@ CONVERSIONDICT = {
 # gonna start with active ones (make api call for that)
 # read in apropriate data from API and put it in a dictionary  
 # get ready to export to email
+# read in all active cases currently 
 
 
 with open("food_recall_data.json", "r") as file:
@@ -84,5 +86,33 @@ def adress_to_latlon(file: json) ->list:
 print(adress_to_latlon(data))
 
 
+
+def get_affected_states(): 
+    pass
+
+
+
+def get_active_cases()-> json:
+    
+    final_dict={
+
+    }
+    #get in states, then get nationwide and if id are not the same then add it in to json
+    for value in CONVERSIONDICT.keys():
+        r=requests.get(f'https://api.fda.gov/food/enforcement.json?search=distribution_pattern:"{value}"+AND+status:"Ongoing"+AND+(classification:"Class II"+classification:"Class I")&limit=500')
+        
+        if(r.status_code==200):
+            recallData=r.json()
+            with open(f'recalldata/recall_data_{value}', 'w') as json_file:
+                    json.dump(recallData, json_file, indent=4)
+
+        else: 
+            print(f"ERROR: RESPONSE CODE{r.status_code} at {value}")
+
+    
+    
+    
+
+get_active_cases()
 
     
