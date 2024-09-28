@@ -69,51 +69,53 @@
 
 <script>
     // Load recalls from JSON file
-    let recalls = [];
+// Load recalls from JSON file
+let recalls = [];
+
+// Fetch the JSON data
+fetch('recalldata/AK.json') // Replace with the correct path to your JSON file
+    .then(response => response.json())
+    .then(data => {
+        recalls = data.results; // Access the 'results' array from the JSON
+    })
+    .catch(error => console.error('Error loading recalls:', error));
+
+// Function to filter recalls by state
+function filterRecallsByState(state) {
+    return recalls.filter(recall => recall.state.toUpperCase() === state.toUpperCase());
+}
+
+// Event listener for search button
+document.getElementById('searchButton').addEventListener('click', function() {
+    const state = document.getElementById('state').value.trim();
+    const results = filterRecallsByState(state);
+    const resultsList = document.getElementById('resultsList');
     
-    // Fetch the JSON data
-    fetch('recalldata/AK.json') // Replace with the correct path to your JSON file
-        .then(response => response.json())
-        .then(data => {
-            recalls = data; // Store the JSON data into the recalls variable
-        })
-        .catch(error => console.error('Error loading recalls:', error));
-    
-    // Function to filter recalls by state
-    function filterRecallsByState(state) {
-        return recalls.filter(recall => recall.state.toUpperCase() === state.toUpperCase());
+    // Clear previous results
+    resultsList.innerHTML = '';
+
+    // Display the filtered results
+    if (results.length > 0) {
+        results.forEach(recall => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <strong>Product:</strong> ${recall.product_description}<br>
+                <strong>Recall Reason:</strong> ${recall.reason_for_recall}<br>
+                <strong>State:</strong> ${recall.state}<br>
+                <strong>Firm:</strong> ${recall.recalling_firm}<br>
+                <strong>Address:</strong> ${recall.address_1}, ${recall.city}, ${recall.state} ${recall.postal_code}<br>
+                <strong>Status:</strong> ${recall.status}<br>
+                <strong>Distribution:</strong> ${recall.distribution_pattern}<br>
+                <strong>Recall Number:</strong> ${recall.recall_number}<br>
+            `;
+            resultsList.appendChild(li);
+        });
+    } else {
+        resultsList.innerHTML = '<li>No recalls found for this state.</li>';
     }
-    
-    // Event listener for search button
-    document.getElementById('searchButton').addEventListener('click', function() {
-        const state = document.getElementById('state').value.trim();
-        const results = filterRecallsByState(state);
-        const resultsList = document.getElementById('resultsList');
-        
-        // Clear previous results
-        resultsList.innerHTML = '';
-    
-        // Display the filtered results
-        if (results.length > 0) {
-            results.forEach(recall => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <strong>Product:</strong> ${recall.product_description}<br>
-                    <strong>Recall Reason:</strong> ${recall.reason_for_recall}<br>
-                    <strong>State:</strong> ${recall.state}<br>
-                    <strong>Firm:</strong> ${recall.recalling_firm}<br>
-                    <strong>Address:</strong> ${recall.address_1}, ${recall.city}, ${recall.state} ${recall.postal_code}<br>
-                    <strong>Status:</strong> ${recall.status}<br>
-                    <strong>Distribution:</strong> ${recall.distribution_pattern}<br>
-                    <strong>Recall Number:</strong> ${recall.recall_number}<br>
-                `;
-                resultsList.appendChild(li);
-            });
-        } else {
-            resultsList.innerHTML = '<li>No recalls found for this state.</li>';
-        }
-    });
-    </script>
+});
+</script>
+
 
 <div class="container">
 
