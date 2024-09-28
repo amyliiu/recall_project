@@ -1,121 +1,39 @@
-<html>
-  <head>
-    <title>Google Maps</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Map</title>
     <style>
-      /* Style the map */
-      #map {
-        height: 400px;
-        width: 600px;
-      }
-
-      /* Style the search box */
-      #search-input {
-        width: 400px;
-        font-size: 14px;
-        padding: 10px;
-        margin-top: 10px;
-        margin-left: 10px;
-        border: 1px solid gray;
-        box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-      }
+        .state {
+            cursor: pointer;
+        }
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5pkn67gqGZ6LzSf5vx8J5JMnqxnarsR0&libraries=places&callback=initMap"
-      async defer></script>
+</head>
+<body>
+    <h1>US Map</h1>
+    <div id="us-map">
+        <!-- Insert your SVG map here -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500">
+            <!-- Example state (simplified, replace with your SVG content) -->
+            <path id="california" class="state" d="..." fill="gray"></path>
+            <path id="texas" class="state" d="..." fill="gray"></path>
+            <!-- Add other states -->
+        </svg>
+    </div>
+
     <script>
-      let map;
-      let searchMarker;
-      let markers = [];
-
-      function initMap() {
-        // Initialize the map centered at a default position
-        const centerPosition = { lat: 41.4549666, lng: -70.5606839 };
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 5,
-          center: centerPosition,
-        });
-
-        // Predefined marker data
-        const locations = [
-          { position: { lat: 37.4220656, lng: -122.0840897 }, title: "Mountain View, CA", description: "Google HQ" },
-          { position: { lat: 47.648994, lng: -122.3503845 }, title: "Seattle, WA", description: "A beautiful city in the Pacific Northwest" },
-        ];
-
-        // Add predefined markers to the map
-        locations.forEach((location) => {
-          const marker = new google.maps.Marker({
-            position: location.position,
-            map: map,
-            title: location.title,
-          });
-
-          // Create an InfoWindow for each marker
-          const infoWindow = new google.maps.InfoWindow({
-            content: `<h3>${location.title}</h3><p>${location.description}</p>`,
-          });
-
-          // Add a click listener to open the InfoWindow on marker click
-          marker.addListener("click", () => {
-            infoWindow.open(map, marker);
-          });
-
-          markers.push(marker);
-        });
-
-        // Custom icon for the search marker (you can use a different URL or SVG path for a different design)
-        const customSearchMarkerIcon = {
-          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",  // URL to the marker image
+        // Set state colors
+        const stateColors = {
+            california: 'red',
+            texas: 'blue',
+            // Add other states and colors
         };
 
-        // Create a single marker for search results with a custom color
-        searchMarker = new google.maps.Marker({
-          map: map,
-          visible: false,
-          icon: customSearchMarkerIcon,  // Apply the custom icon
+        // Apply colors
+        Object.keys(stateColors).forEach(state => {
+            document.getElementById(state).setAttribute('fill', stateColors[state]);
         });
-
-        // Create the search box
-        const input = document.getElementById("search-input");
-        const searchBox = new google.maps.places.SearchBox(input);
-
-        // Bias the search box results towards the current map's viewport
-        map.addListener("bounds_changed", () => {
-          searchBox.setBounds(map.getBounds());
-        });
-
-        // Event listener for when a place is selected from the search box
-        searchBox.addListener("places_changed", () => {
-          const places = searchBox.getPlaces();
-
-          if (places.length === 0) {
-            return;
-          }
-
-          const place = places[0];
-
-          if (!place.geometry) {
-            console.log("Returned place contains no geometry");
-            return;
-          }
-
-          // Zoom the map to the selected place's location
-          map.setCenter(place.geometry.location);
-          map.setZoom(8);
-
-          // Move the searchMarker to the selected place's location and make it visible
-          searchMarker.setPosition(place.geometry.location);
-          searchMarker.setTitle(place.name);
-          searchMarker.setVisible(true);
-        });
-      }
     </script>
-  </head>
-  <body>
-    <h1>Google Map with Search Box and Custom Search Marker</h1>
-
-    <!-- Input field for searching locations -->
-    <input id="search-input" type="text" placeholder="Search for places" />
-
-    <!-- Map div -->
-    <div id="map"></div>
-  </body>
+</body>
 </html>
