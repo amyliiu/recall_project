@@ -146,7 +146,7 @@ color: #fff;
 
 .link{
 	padding:15px 35px;
-	background:#621B00;
+	background:#2689c3;
 	color:#fff !important;
 	font-size:16px;
 	font-weight:400;
@@ -162,12 +162,12 @@ color: #fff;
 }
 .link:hover {
 	text-decoration:none;
-	color:#621B00 !important;
+	color:#2689c3 !important;
 	background:#fff;
 }
 
 .link:active, .link:focus {
-	background: #621B00;
+	background: #2689c3;
 	text-decoration:none;
 	color:#fff !important;
 }
@@ -206,7 +206,7 @@ color: #fff;
 
 .main-nav li a:hover{ 
 	text-decoration:none;
-	color: #621B00;
+	color: #2689c3;
 }
 
 .small-logo{ 
@@ -220,6 +220,15 @@ color: #fff;
 
 /* Services
 ---------------------------------*/
+
+.user-data{
+	font-size:16px;
+	color: #2689c3;
+	font-family: 'Montserrat', sans-serif;
+	transition:all 0.3s ease-in-out;
+	-moz-transition:all 0.3s ease-in-out;
+	-webkit-transition:all 0.3s ease-in-out;
+}
 
 .service-list{
 	padding:0 0 0 0;
@@ -243,6 +252,10 @@ color: #fff;
 }
 .main-section.alabaster{
 	background:#fafafa;
+}
+
+#info{
+	background:#0000;
 }
 
 /* Featured Work
@@ -292,7 +305,7 @@ color: #fff;
 .Learn-More{
 	display:inline-block;
 	padding:0 5px 0 0;
-	color:#621B00;
+	color:#2689c3;
 	font-size:16px;
 	text-transform:uppercase;
 	font-family: 'Montserrat', sans-serif;
@@ -372,7 +385,7 @@ color: #fff;
 }
 
 .Portfolio-nav li a.current{
-	background:#621B00;
+	background:#2689c3;
 	color:#fff;
 	text-decoration:none;
 }
@@ -446,13 +459,13 @@ img {
 	width:68px;
 	height:68px;
 	margin:0 auto;
-	border:2px solid #621B00;
+	border:2px solid #2689c3;
 	border-radius:50%;
 	display:block;
 	line-height:68px;
 	text-align:center;
 	font-size:27px;
-	color:#621B00;
+	color:#2689c3;
 	cursor: pointer;
 	transition:all 0.3s ease-in-out;
 	-moz-transition:all 0.3s ease-in-out;
@@ -465,7 +478,7 @@ border: 2px solid #fff;
 }
 
 .c-logo-part{
-	background:#621B00;
+	background:#2689c3;
 	padding:25px 0;
     filter: alpha(opacity=60);
 }
@@ -704,7 +717,7 @@ border: 2px solid #fff;
 	-webkit-transition:all 0.3s ease-in-out;
 }
 .input-text:focus {
-	border: 1px solid #621B00;
+	border: 1px solid #2689c3;
 	outline:0;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(124, 197, 118, 0.3);
 	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(124, 197, 118, 0.3);	
@@ -719,7 +732,7 @@ border: 2px solid #fff;
 .input-btn{
 	width:175px;
 	height:50px;
-	background:#621B00;
+	background:#2689c3;
 	border-radius:4px;
 	color:#ffffff;
 	font-size:14px;
@@ -746,8 +759,8 @@ border: 2px solid #fff;
 }
 
 #sendmessage {
-    color: #621B00;
-    border:1px solid #621B00;
+    color: #2689c3;
+    border:1px solid #2689c3;
     display:none;
     text-align:center;
     padding:15px;
@@ -787,7 +800,7 @@ border: 2px solid #fff;
 	text-align:center;
 }
 .copyright a, .credits a{
-	color:#621B00;
+	color:#2689c3;
 	font-weight:600;
 	text-decoration: none;
 	transition:all 0.3s ease-in-out;
@@ -816,7 +829,7 @@ border: 2px solid #fff;
 }
 
 .res-nav_click:hover, .res-nav_click:active, .res-nav_click:focus {
-	color: #621B00 !important;
+	color: #2689c3 !important;
 }
 
 .portfolioContainer{

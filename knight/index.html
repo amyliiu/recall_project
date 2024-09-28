@@ -66,26 +66,27 @@
 </nav><!--main-nav-end-->
 
 
-<section class="main-section" id="info">
-    <div class="container">
+<section class="main-section" id="info" style="background-color: #f7f7f7;>
+    <<div class="container">
         <h2>Info</h2>
         <h6>Let's learn what food recalls really are.</h6>
-    
-    <div class="boxes" style="display: flex; flex-direction: row; align-items: center; gap: 20px; padding: 20px;">
-        <div class="box" style="border: 0px solid #ccc; padding: 20px; border-radius: 8px; width: 100%; max-width: 500px;">
-            <h3>What is a Food Recall?</h3>
-            <p>A food recall is an action taken to remove a product from the market due to safety concerns, often prompted by contamination, mislabeling, or allergen risks. Recalls can be initiated by manufacturers voluntarily or mandated by government agencies when a significant health risk is identified. The goal is to protect consumers from potentially harmful products and prevent foodborne illnesses.</p>
+
+        <div class="boxes" style="display: flex; flex-direction: row; align-items: stretch; gap: 20px; padding: 20px;">
+            <div class="box" style="border: 0px solid #ccc; padding: 20px; border-radius: 8px; flex: 1; min-width: 200px;">
+                <h3>What is a Food Recall?</h3>
+                <p>A food recall is an action taken to remove a product from the market due to safety concerns, often prompted by contamination, mislabeling, or allergen risks. Recalls can be initiated by manufacturers voluntarily or mandated by government agencies when a significant health risk is identified. The goal is to protect consumers from potentially harmful products and prevent foodborne illnesses.</p>
+            </div>
+
+            <div style="border: 0px solid #ccc; padding: 20px; border-radius: 8px; flex: 1; min-width: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <img src="img/info2.png" alt="Clipart related to food recalls" style="max-width: 100%; height: auto;">
+            </div>
+
+            <div class="box" style="border: 0px solid #ccc; padding: 20px; border-radius: 8px; flex: 1; min-width: 200px;">
+                <h3>Why are they dangerous?</h3>
+                <p>Food recalls can be dangerous because they often involve products that may be contaminated with harmful pathogens, such as bacteria or viruses, which can lead to serious health issues. Consuming contaminated food can result in foodborne illnesses, causing symptoms ranging from mild gastrointestinal discomfort to severe complications requiring hospitalization.</p>
+            </div>
         </div>
-
-
-        
-
-    <div class="boxes" style="display: flex; flex-direction: row; align-items: center; gap: 20px; padding: 20px;">
-        <div class="box" style="border: 0x solid #ccc; padding: 20px; border-radius: 8px; width: 100%; max-width: 500px;">
-            <h3>Why are they dangerous?</h3>
-            <p>Food recalls can be dangerous because they often involve products that may be contaminated with harmful pathogens, such as bacteria or viruses, which can lead to serious health issues. Consuming contaminated food can result in foodborne illnesses, causing symptoms ranging from mild gastrointestinal discomfort to severe complications requiring hospitalization.</p>
-        </div>
-
+    </div>
 </section>
 
 
@@ -97,6 +98,7 @@
 	<div class="container">
     	<h2>Services</h2>
     	<h6>Know the recalls now.</h6>
+        <form id="subscription-form" onsubmit="event.preventDefault(); submitData();"></form>
         <div class="row">
         	<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
             	<div class="service-list">
@@ -106,7 +108,7 @@
                 	<div class="service-list-col2">
                         <h3>step one.</h3>
                         <p>Sign up with your email to subscribe to the platform and get emails as soon as a food item in your area is recalled.</p>                        </p>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" style="border-color: #2689c3" required>
                     </div>
                 </div>
                 <div class="service-list">
@@ -116,7 +118,7 @@
                 	<div class="service-list-col2">
                         <h3>step two.</h3>
                         <p>Select your state from the drop-down menu to get personalized updates of food recalls.</p>
-                        <select id="state" name="state" required>
+                        <select id="state" name="state" style="border-color: #2689c3" required>
                             <option value="">Select your state</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -177,17 +179,21 @@
                     </div>
                 	<div class="service-list-col2">
                         <h3>step three.</h3>
-                        <p>Check out the "Map" feature to learn about the food recalls in other states.</p>
+                        <p>Submit the form and check out the "Map" feature to learn about the food recalls in other states.</p>
+                        <div class="user-data">
+                            <button onclick="submitData()" style="margin-top: 20px; background: #2689c3; color: #fff; border-color: #fff">SUBMIT</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
-            	<img src="img/macbook-pro.png" alt="">
-            </figure>
-        
-        </div>
+                <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
+                    <img src="img/model.jpg" alt="">
+                </figure>
+            </div>
+        </form>
 	</div>
 </section><!--main-section-end-->
+<script src="data.js"></script>
 
 
 
