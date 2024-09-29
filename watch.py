@@ -3,7 +3,7 @@ import requests
 import json
 import os
 import time
-
+#repalce data at end except example wyomign 
 from datagather import CONVERSIONDICT,collect_data
 
 def check_for_new_recalls(offset:int)->dict: # states affected returns 
@@ -98,7 +98,10 @@ def check_for_new_recalls(offset:int)->dict: # states affected returns
     
     return new_recalls
 
-            
+
+def replace_old_data_with_new(): # if implemented this function would replace the old data with new 
+    pass                      
+
 # print(check_for_new_recalls(0))
     
 
