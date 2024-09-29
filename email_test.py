@@ -1,6 +1,8 @@
 import smtplib, ssl
 import json
 import time
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 with open('data.json') as f:
     data = json.load(f)
@@ -24,7 +26,7 @@ def find_state_by_email(file_path, target_email):
             return item["state"]
     return None
 
-def email(status):
+def email(status, state, product_description, reason_for_recall, classification, distribution_pattern):
     subject = ""
     if status == "Ongoing":
         subject = "New food recall - product"
@@ -34,68 +36,67 @@ def email(status):
         subject = "Food recall status update - " + status
     else:
         subject = "Food recall status update - " + status
-    message = f"""Subject: {subject}
-Test
-Product name
-Product type
-classification
-reason for recall
-location """
+    message = f"""Subject: {subject} \n
+States affected: {distribution_pattern}
+Product description: {product_description}
+Reason for recall: {reason_for_recall}
+Classification type: {classification}
+"""
 
     return message
 
-#remove
 
-def send_email1(state, product_type, product_description, reason_for_recall, classification):
+
+def send_email1(state, product_description, reason_for_recall, classification, distribution_pattern):
     port = 587
     #state  product type product description classification -1 reason fro recall, classification 2 
     smtp_server = "smtp-mail.outlook.com"
-    sender_email = "food.recall12@outlook.com"
+    sender_email = "food.recall1234@outlook.com"
     password = "testing$12"
 
-    receiver_email = get_emails_by_state(data, state) # based on where outbreak is - 
+    receiver_emails = get_emails_by_state(data, state) # based on where outbreak is - 
 
-    print(receiver_email)
+    print(receiver_emails)
 
     context = ssl.create_default_context()
-    message = email("Completed")
+    message = email("Completed", state, product_description, reason_for_recall, classification, distribution_pattern) # get email
     with smtplib.SMTP(smtp_server, port) as server:
         server.ehlo("mylowercasehost")
         server.starttls(context=context)
         server.ehlo("mylowercasehost")
         server.login(sender_email, password)
-        server.sendmail(sender_email, receiver_email, message)
+        server.sendmail(sender_email, receiver_emails, message)
         print(message)
-        print("email sent")
+        print("emails sent")
 
-def send_email2(email, state):
 
-    message2 ="" #
+
+def send_email2(email_ad, state):
+
+    message ="" #
     #print("works!")
     #print(email)
     #print(state + ".json")
-    state_data = load_data(state + ".json")
+    state_data = load_data(state.upper() + ".json")
     for item in state_data["results"]:
-        message2 += item["recalling_firm"] + ", "
+        message += item["recalling_firm"] + ", "
 
     port = 587
     smtp_server = "smtp-mail.outlook.com"
-    sender_email = "food.recall12@outlook.com"
+    sender_email = "food.recall1234@outlook.com"
     password = "testing$12"
     context = ssl.create_default_context()
-    message22 = f"""Subject: Products that are currently recalled in your area
-
-    """ + message2 + """
-    """
-    print(message22)
+    message_combined = """Subject: Products that are currently recalled in your area \n
     
-    #print(message)
+     """ + message + """ """
+    #message_combined = MIMEMultipart("alternative")
+
     with smtplib.SMTP(smtp_server, port) as server:
         server.ehlo("mylowercasehost")
         server.starttls(context=context)
         server.ehlo("mylowercasehost")
         server.login(sender_email, password)
-        server.sendmail(sender_email, email, message22)
+        server.sendmail(sender_email, email_ad, message_combined)
         print("email sent")
 
 
@@ -114,12 +115,18 @@ def check_for_new_emails(file_path, known_emails):
         print("no new email")
 
 
+#def func (): #- returns list of new updates
+    #if not empty - for item in list:
+        #send_email(item["state"], item["product_description", item["reason_for_recall"], item["classification"], ["distribution_pattern"])
+
 known_emails = {item["email"] for item in data}
 
-
+send_email1("wa", "aaaaa", "aaaaaaa", "aaaaaaa", "aaaaaaa")
 
 while True:
     check_for_new_emails('data.json', known_emails)
+    #check_for_new_updates()
     time.sleep(5)
+    
 
 #send_email("ny")
