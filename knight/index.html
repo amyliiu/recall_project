@@ -434,6 +434,26 @@ we were well fed and drunk all the time!</p>
         if (email && state) {
             console.log({ email, state });
 
+            const formData = {
+                email: email,
+                state: state
+            };
+
+            fetch('http://127.0.0.1:5500/api/saveData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Success:', result);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
             // Show the submission message
             document.getElementById('submission-message').style.display = 'block';
 
