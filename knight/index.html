@@ -85,7 +85,9 @@
 	<div class="container">
     	<h2>Subscribe</h2>
     	<h6>Subscribe to recall notifications now.</h6>
-        <form id="subscription-form" >
+
+        <!-- <form id="subscription-form" method="POST" action="append.php"> -->
+        <form id="subscription-form" method="POST">
         <div class="row">
         	<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
             	<div class="service-list">
@@ -159,6 +161,7 @@
                         <h3>step three.</h3>
                         <p>Submit the form and check out the "Map" feature to learn about the food recalls in other states.</p>
                         <div class="user-data">
+                            <!-- <input type="submit" value="Submit"> -->
                             <button onclick="handleSubmit()" type="submit" style="margin-top: 20px; background: #2689c3; color: #fff; border-color: #fff">SUBMIT</button>
                         </div>
                         <p id="submission-message" style="display: none; color: #2689c3">Data submitted!</p>
@@ -211,6 +214,8 @@
 <!-- <script type="text/javascript" src="js/data.js"></script> -->
 
 <script type="text/javascript">
+
+
     function handleSubmit(event) {
         event.preventDefault();
         const email = document.getElementById('email').value;
@@ -218,6 +223,17 @@
 
         if (email && state) {
             console.log({ email, state });
+            fetch('http://127.0.0.1:8000/update-json', {
+                method: "POST",
+                body: JSON.stringify({
+                    email,
+                    state,
+                }),
+                headers: {
+                    'Content-type': "application/json",
+                    'Access-Control-Allow-Origin': '*'
+                }
+            })
 
             // Show the submission message
             document.getElementById('submission-message').style.display = 'block';
