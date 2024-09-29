@@ -1,7 +1,5 @@
 # apitest.py
 import requests
-import pandas as pd
-import numpy as np
 import json
 from geopy.geocoders import Nominatim   
 import os

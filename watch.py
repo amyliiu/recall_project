@@ -1,7 +1,5 @@
 # apitest.py
 import requests
-import pandas as pd
-import numpy as np
 import json
 import os
 import time
@@ -101,7 +99,7 @@ def check_for_new_recalls(offset:int)->dict: # states affected returns
     return new_recalls
 
             
-print(check_for_new_recalls(0))
+# print(check_for_new_recalls(0))
     
 
 
