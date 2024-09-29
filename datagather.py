@@ -56,36 +56,7 @@ CONVERSIONDICT = {
     "WY": "Wyoming"
 }
 
-def merge_json_results(json1_filename, json2_filename, folder='recalldata'):
-    # Construct full file paths
-    json1_path = os.path.join(folder, json1_filename)
-    json2_path = os.path.join(folder, json2_filename)
 
-    # Load JSON data from files
-    with open(json1_path, 'r') as file1:
-        json1 = json.load(file1)
-    
-    with open(json2_path, 'r') as file2:
-        json2 = json.load(file2)
-    
-    # Concatenate the 'results' lists from both JSON objects
-    if 'results' in json1 and 'results' in json2:
-        json3 = json1  # Start with json1
-        json3['results'] = json1['results'] + json2['results']  # Concatenate results from both
-    else:
-        raise KeyError("One or both JSONs do not contain a 'results' key.")
-
-    # Overwrite json1 file with the new json3 content
-    with open(json1_path, 'w') as file1:
-        json.dump(json3, file1, indent=4)
-    
-    print(f"Successfully merged and saved to {json1_path}")
-
-    if os.path.exists(json2_path):
-        os.remove(json2_path)
-        print(f"Deleted {json2_path}")
-    else:
-        print(f"{json2_path} does not exist.")
 # get ready to export to email
 # read in all active cases currently 
 # write function to loop over 
