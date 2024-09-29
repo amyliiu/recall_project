@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import json
 from geopy.geocoders import Nominatim   
-import os;
+import os
 
 CONVERSIONDICT = {
     "AL": "Alabama",
@@ -123,8 +123,13 @@ def get_active_cases(offset:int,folder="recalldata") ->dict:
 
     }
     
+    if(folder=="recallData"):
+        path=os.path.join("knight",folder)
+    else:
+        path=os.path.join(folder)
+    
     #get in states, then get nationwide and if id are not the same then add it in to json
-    for key in list(CONVERSIONDICT.keys())[:-offset]:  
+    for key in list(CONVERSIONDICT.keys()):  
         r=requests.get(f'https://api.fda.gov/food/enforcement.json?search=distribution_pattern:"{key}"+AND+status:"Ongoing"+AND+(classification:"Class II"+classification:"Class I")&limit=500')
         
         if(r.status_code==200):
@@ -132,13 +137,13 @@ def get_active_cases(offset:int,folder="recalldata") ->dict:
 
             final_dict[f"{key}"]=recallData
 
-            with open(f'{folder}/{key}.json', 'w') as json_file1:
+            with open(f'{path}/{key}.json', 'w') as json_file1:
                     json.dump(recallData, json_file1, indent=4)
 
         else: 
             print(f"ERROR: RESPONSE CODE{r.status_code} at {key}")
 
-    for value in list(CONVERSIONDICT.values())[:-offset]: 
+    for value in list(CONVERSIONDICT.values()): 
             r=requests.get(f'https://api.fda.gov/food/enforcement.json?search=distribution_pattern:"{value}"+AND+status:"Ongoing"+AND+(classification:"Class II"+classification:"Class I")&limit=500')
             
             if(r.status_code==200):
@@ -146,7 +151,7 @@ def get_active_cases(offset:int,folder="recalldata") ->dict:
 
                 final_dict[f"{value}"]=recallData
 
-                with open(f'{folder}/{value}.json', 'w') as json_file2:
+                with open(f'{path}/{value}.json', 'w') as json_file2:
                         json.dump(recallData, json_file2, indent=4)
 
             else: 

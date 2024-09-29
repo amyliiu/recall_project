@@ -75,7 +75,7 @@ def check_for_new_recalls(offset:int)->dict: # states affected returns
     for key in new_recalls.keys():
         print(key)
     
-        with open (f"./recalldata/{key}.json","r") as p:
+        with open (f"./knight/recalldata/{key}.json","r") as p:
             base_json=json.load(p)
         with open (f"./tempdata/{key}.json","r" ) as w:
             inspecting_json=json.load(w)
