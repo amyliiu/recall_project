@@ -16,6 +16,7 @@
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="css/animate.css" rel="stylesheet" type="text/css">
+<link href="css/boxes.css" rel="stylesheet" type="text/css">
 
 <!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
 
@@ -42,7 +43,7 @@
             <li><a href="index.html">Info</a></li>
             <li><a href="index.html">Services</a></li>
             <li class="small-logo"><a href="#header"><img src="img/file.png" alt=""></a></li>
-            <li><a href="#index.html">Map</a></li>
+            <li><a href="index.html">Map</a></li>
             <li><a href='all_recalls.html'>All Recalls</a></li>
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
@@ -117,6 +118,7 @@
         if (recalls.length > 0) {
             recalls.forEach(recall => {
                 const li = document.createElement('li');
+                li.className = 'result-item'
                 li.innerHTML = `
                     <strong>Product:</strong> ${recall.product_description}<br>
                     <strong>Recall Reason:</strong> ${recall.reason_for_recall}<br>
