@@ -16,7 +16,7 @@
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 <link href="css/responsive.css" rel="stylesheet" type="text/css">
 <link href="css/animate.css" rel="stylesheet" type="text/css">
-<link href="css/boxes.css" rel="stylesheet" type="text/css">
+
 
 <!--[if IE]><style type="text/css">.pie {behavior:url(PIE.htc);}</style><![endif]-->
 
@@ -113,7 +113,7 @@
 
     function loadClassData(state, clas) {
         const stateAbbreviation = state.toUpperCase();
-        const clas = clas.toUpperCase();
+        const classif = clas;
         const filePath = `recalldata/${stateAbbreviation}.json`;  // Dynamically construct the file path
 
         fetch(filePath)
@@ -125,7 +125,7 @@
             })
             .then(data => {
                 const recalls = data.results; // Access the 'results' array in the JSON
-                displayRecallResults(recalls);
+                displayRecallResults(recalls, classif);
             })
             .catch(error => {
                 console.error('Error loading recalls:', error);
@@ -134,7 +134,7 @@
         }
     
     // Function to display the filtered recall results
-    function displayRecallResults(recalls) {
+    function displayRecallResults(recalls, classif) {
         const resultsList = document.getElementById('resultsList');
         
         // Clear previous results
@@ -143,6 +143,9 @@
         // Display the filtered results
         if (recalls.length > 0) {
             recalls.forEach(recall => {
+                console.log(classif);
+                console.log(recall.classification);
+                if (recall.classification == classif){
                 const li = document.createElement('li');
                 li.className = 'result-item'
                 li.innerHTML = `
@@ -153,6 +156,7 @@
                     <strong>  </strong><br>
                 `;
                 resultsList.appendChild(li);
+                }
             });
         } else {
             resultsList.innerHTML = '<li>No recalls found for this state.</li>';
@@ -162,10 +166,10 @@
     // Event listener for search button
     document.getElementById('searchButton').addEventListener('click', function() {
         const state = document.getElementById('state').value.trim();
-        const clas = document.getElementById('clas').value.trim();
+        const clas = document.getElementById('classification').value.trim();
 
         if (state) {
-            loadRecallData(state,clas); // Load recall data based on the state input
+            loadClassData(state,clas); // Load recall data based on the state input
         } else {
             document.getElementById('resultsList').innerHTML = '<li>Please enter a valid class and/or state abbreviation.</li>';
         }

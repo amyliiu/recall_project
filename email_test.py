@@ -36,6 +36,7 @@ def email(state, product_description, reason_for_recall, classification, distrib
     
     message = f"""Subject: {subject} \n
 Hello,
+
 Important notification! The following product has been recalled in your state of {state}. Please ensure you take the necessary precautions in tracking and avoiding the product.
 
 Product description: {product_description}
@@ -43,10 +44,8 @@ Reason for recall: {reason_for_recall}
 Classification type: {classification}
 
 Best,
-______
+RecallRadar
 
-Best,
-______
 """
 
     return message
@@ -92,7 +91,7 @@ def send_email2(email_ad, state):
     sender_email = "food.recall12345@outlook.com"
     password = "testing$12"
     context = ssl.create_default_context()
-    message_combined = """Subject: Welcome - Stay Informed About Food Recalls!\n
+    message_combined = """Subject: Welcome to RecallRadar - Stay Informed About Food Recalls!\n
     
 Welcome! We are excited to have you join our community committed to ensuring food safety and staying up to date with the latest food recalls.
 
@@ -105,6 +104,8 @@ Detailed Recall Insights: Get in-depth information on each food recall, includin
 Customizable Filters: Search and filter food recalls based on criteria such as product type, brand, region, and more.
 We are here to help you navigate food recalls easily and confidently.
 
+Best Regards,
+RecallRadar
 """
 
 
