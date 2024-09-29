@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width", maximum-scale=1>
 
-<title>Homepage</title>
-<link rel="icon" href="favicon.png" type="image/png">
+<title>All Recall</title>
+<link rel="icon" href="img/food.png" type="image/png">
 <link rel="shortcut icon" href="favicon.ico" type="img/x-icon">
 
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -39,15 +39,21 @@
 <nav class="main-nav-outer" id="test"><!--main-nav-start-->
 	<div class="container">
         <ul class="main-nav">
-            <li><a href="info">Info</a></li>
-            <li><a href="#service">Services</a></li>
+            <li><a href="index.html">Info</a></li>
+            <li><a href="index.html">Services</a></li>
             <li class="small-logo"><a href="#header"><img src="img/file.png" alt=""></a></li>
-            <li><a href="#Portfolio">Map</a></li>
+            <li><a href="#index.html">Map</a></li>
             <li><a href='all_recalls.html'>All Recalls</a></li>
         </ul>
         <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
     </div>
 </nav><!--main-nav-end-->
+
+<section class="space">
+    <div class="'spacccce">
+        <h1></h1>
+    </div>
+</section>
 
 <section class="recall_heading"><!--business-talking-start-->
 	<div class="container">
@@ -55,9 +61,14 @@
     </div>
 </section><!--business-talking-end-->
 
+<section class="space">
+    <div class="'spacccce">
+        <h1></h1>
+    </div>
+</section>
+
 <section class="recall-search-section">
     <div class="container">
-        <h3>Search Food Recalls by State</h3>
         <label for="state">Enter State Abbreviation (e.g., CA, TX, NY):</label>
         <input type="text" id="state" placeholder="Enter state">
         <button id="searchButton">Search</button>
@@ -111,6 +122,7 @@
                     <strong>Recall Reason:</strong> ${recall.reason_for_recall}<br>
                     <strong>Recall Number:</strong> ${recall.recall_number}<br>
                     <strong>Classification:</strong> ${recall.classification}<br>
+                    <strong>  </strong><br>
                 `;
                 resultsList.appendChild(li);
             });
@@ -130,29 +142,6 @@
         }
     });
     </script>
-
-
-
-
-
-<div class="container">
-
-    
-</div>
-<footer class="footer">
-    <div class="container">
-        <span class="copyright">&copy; Knight Theme. All Rights Reserved</span>
-        <div class="credits">
-            <!-- 
-                All the links in the footer should remain intact. 
-                You can delete the links only if you purchased the pro version.
-                Licensing information: https://bootstrapmade.com/license/
-                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Knight
-            -->
-            <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-    </div>
-</footer>
 
 
 <script type="text/javascript">
