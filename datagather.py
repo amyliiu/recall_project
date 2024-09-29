@@ -1,7 +1,6 @@
 # apitest.py
 import requests
 import json
-from geopy.geocoders import Nominatim   
 import os
 
 CONVERSIONDICT = {
