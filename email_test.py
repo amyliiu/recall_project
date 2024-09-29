@@ -3,6 +3,8 @@ import json
 import time
 from watch import check_for_new_recalls
 import os
+from watch import check_for_new_recalls
+import os
 
 with open('./knight/data.json') as f:
     data = json.load(f)
@@ -29,6 +31,9 @@ def find_state_by_email(file_path, target_email):
 def email(state, product_description, reason_for_recall, classification, distribution_pattern):
     subject = f"[UPDATE] New Food Recall in {state}"
     
+def email(state, product_description, reason_for_recall, classification, distribution_pattern):
+    subject = f"[UPDATE] New Food Recall in {state}"
+    
     message = f"""Subject: {subject} \n
 Hello,
 Important notification! The following product has been recalled in your state of {state}. Please ensure you take the necessary precautions in tracking and avoiding the product.
@@ -36,6 +41,9 @@ Important notification! The following product has been recalled in your state of
 Product description: {product_description}
 Reason for recall: {reason_for_recall}
 Classification type: {classification}
+
+Best,
+______
 
 Best,
 ______
@@ -50,6 +58,7 @@ def send_email1(state, product_description, reason_for_recall, classification, d
     #state  product type product description classification -1 reason fro recall, classification 2 
     smtp_server = "smtp-mail.outlook.com"
     sender_email = "food.recall12345@outlook.com"
+    sender_email = "food.recall12345@outlook.com"
     password = "testing$12"
 
     receiver_emails = get_emails_by_state(data, state) # based on where outbreak is - 
@@ -63,6 +72,8 @@ def send_email1(state, product_description, reason_for_recall, classification, d
         server.starttls(context=context)
         server.ehlo("mylowercasehost")
         server.login(sender_email, password)
+        #print(sender_email)
+        #print(receiver_emails[0])
         server.sendmail(sender_email, receiver_emails, message)
         print("emails sent")
 
@@ -77,6 +88,7 @@ def send_email2(email_ad, state):
 
     port = 587
     smtp_server = "smtp-mail.outlook.com"
+    sender_email = "food.recall12345@outlook.com"
     sender_email = "food.recall12345@outlook.com"
     password = "testing$12"
     context = ssl.create_default_context()
