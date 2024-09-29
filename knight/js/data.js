@@ -1,27 +1,31 @@
-function submitData() {
-    const email = document.getElementById('email').value;
-    const state = document.getElementById('state').value;
+// function handleSubmit(event) {
+//     event.preventDefault();
+  
+//     const data = new FormData(event.target);
+  
+//     const value = data.get('email');
+  
+//     console.log({ value });
+//   }
+  
+//   const form = document.querySelector('form');
+//   form.addEventListener('submit', handleSubmit);
 
-    if (email && state) {
-        // Here you can use AJAX or Fetch API to send the data to your backend
-        // This is a mock example, assuming you have a backend API set up
-        fetch('YOUR_BACKEND_API_ENDPOINT', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email, state: state }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Data submitted successfully!');
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('There was an error submitting your data.');
-        });
-    } else {
-        alert('Please fill in both fields.');
-    }
-}
+// document.addEventListener('DOMContentLoaded', 
+export function handleSubmit() {
+const form = document.getElementById('myForm');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevents the default form submission
+
+        const state = document.getElementById('state').value;
+        const email = document.getElementById('email').value;
+
+        console.log('Email:', email);
+        console.log('State:', state);
+        
+        // You can add further processing here, like sending data to a server
+    });
+};
+
+// module.exports = { handleSubmit };
