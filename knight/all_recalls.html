@@ -72,7 +72,11 @@
     <div class="container">
         <label for="state">Enter State Abbreviation (e.g., CA, TX, NY):</label>
         <input type="text" id="state" placeholder="Enter state">
-        <button id="searchButton">Search</button>
+
+        <label for="clas">Enter Class:</label>
+        <input type="text" id="classification" placeholder="Enter classification">
+        <button id="searchButton">Filter</button>
+        
         
         <!-- Results Section -->
         <div id="recallResults">
@@ -106,6 +110,28 @@
                 document.getElementById('resultsList').innerHTML = '<li>Unable to fetch data for this state. Please try another state.</li>';
             });
     }
+
+    function loadClassData(state, clas) {
+        const stateAbbreviation = state.toUpperCase();
+        const clas = clas.toUpperCase();
+        const filePath = `recalldata/${stateAbbreviation}.json`;  // Dynamically construct the file path
+
+        fetch(filePath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error fetching data for state: ${stateAbbreviation}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const recalls = data.results; // Access the 'results' array in the JSON
+                displayRecallResults(recalls);
+            })
+            .catch(error => {
+                console.error('Error loading recalls:', error);
+                document.getElementById('resultsList').innerHTML = '<li>Unable to fetch data for this state. Please try another state.</li>';
+            });  
+        }
     
     // Function to display the filtered recall results
     function displayRecallResults(recalls) {
@@ -136,15 +162,16 @@
     // Event listener for search button
     document.getElementById('searchButton').addEventListener('click', function() {
         const state = document.getElementById('state').value.trim();
-        
+        const clas = document.getElementById('clas').value.trim();
+
         if (state) {
-            loadRecallData(state); // Load recall data based on the state input
+            loadRecallData(state,clas); // Load recall data based on the state input
         } else {
-            document.getElementById('resultsList').innerHTML = '<li>Please enter a valid state abbreviation.</li>';
+            document.getElementById('resultsList').innerHTML = '<li>Please enter a valid class and/or state abbreviation.</li>';
         }
     });
+    
     </script>
-
 
 <script type="text/javascript">
     $(document).ready(function(e) {
