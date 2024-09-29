@@ -85,12 +85,12 @@ def check_for_new_recalls(offset:int)->dict: # states affected returns
             
 
             new_entries = [entry for entry in results2 if entry not in results1]
-            print(new_entries)
+            #print(new_entries)
 
             if(new_entries):
                 new_recalls[key]+=new_entries
-            else:
-                print("no new entries")
+            #else:
+                #print("no new entries")
 
         else: 
             raise KeyError("One or both jsons do not contain a 'meta' key")
