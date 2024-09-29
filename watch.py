@@ -71,7 +71,7 @@ def check_for_new_recalls(offset:int)->dict: # states affected returns
     collect_data(offset=offset,folder="tempdata")
 
     for key in new_recalls.keys():
-        print(key)
+        #print(key)
     
         with open (f"./knight/recalldata/{key}.json","r") as p:
             base_json=json.load(p)
@@ -85,7 +85,7 @@ def check_for_new_recalls(offset:int)->dict: # states affected returns
             
 
             new_entries = [entry for entry in results2 if entry not in results1]
-            print(new_entries)
+            #print(new_entries)
 
             if(new_entries):
                 new_recalls[key]+=new_entries
